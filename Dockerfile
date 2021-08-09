@@ -33,9 +33,11 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/* && \
 	rm -rf /usr/share/man/?? && \
 	rm -rf /usr/share/man/??_* && \
-	curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer && \
-	# clean temporary files
 	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+	# curl -sS https://getcomposer.org/installer | sudo php --install-dir=/usr/local/bin --filename=composer && \
+	# php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && php composer-setup.php && \
+	# mv composer.phar /usr/local/bin/composer && \
+	# clean temporary files
 
 # Nginx configuration
 RUN sed -i -e"s/worker_processes  1/worker_processes 5/" /etc/nginx/nginx.conf && \
